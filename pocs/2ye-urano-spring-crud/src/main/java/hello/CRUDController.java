@@ -26,14 +26,26 @@ public class CRUDController {
     @RequestMapping(value="/deletePerson")
 	public String deletePerson(@ModelAttribute("form-delete") Person person){
     	Iterable<Person> allPersons = this.repository.findAll();
-    	Iterable<Person> filterPersons=Iterables.filter(allPersons, new Predicate<Person>() {
+    	Iterable<Person> filterPersons = findTheRightPerson(person, allPersons);
+    	this.repository.delete(filterPersons.iterator().next());
+		return "redirect:/crud";
+	}
+
+    @RequestMapping(value="/updatePerson")
+   	public String updatePerson(@ModelAttribute("form-delete") Person person){
+       	//Iterable<Person> allPersons = this.repository.findAll();
+       	//Iterable<Person> filterPersons = findTheRightPerson(person, allPersons);
+       	this.repository.save(person);
+   		return "redirect:/crud";
+   	}
+	private Iterable<Person> findTheRightPerson(Person person, Iterable<Person> allPersons) {
+		Iterable<Person> filterPersons=Iterables.filter(allPersons, new Predicate<Person>() {
     	    @Override
     	    public boolean apply(Person p) {
     	        return p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName());
     	    }
     	});
-    	this.repository.delete(filterPersons.iterator().next());
-		return "redirect:/crud";
+		return filterPersons;
 	}
     @RequestMapping(value="/insertPerson")
    	public String insertPerson(@ModelAttribute("form-delete") Person person){

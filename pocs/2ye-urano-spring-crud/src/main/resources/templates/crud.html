@@ -16,8 +16,9 @@
     </div>
   </div>
 </nav>
-	<button  id="btn-delete" class="  btn btn-lg btn-primary" >Delete Person</button>
-	<button  id="btn-insert" class=" btn btn-lg btn-success" >Insert Person</button>
+	<button  id="btn-delete-dialog" class="  btn btn-lg btn-primary" >Delete Person</button>
+	<button  id="btn-insert-dialog" class=" btn btn-lg btn-success" >Insert Person</button>
+	<button  id="btn-update-dialog" class=" btn btn-lg btn-warning" >Update Person</button>
 	<div  style="margin-top: 10px">
 	
 	<div title="All Persons" th:unless="${#lists.isEmpty(allPersons)}">
@@ -25,12 +26,14 @@
 	<table class="table table-bordered">
 	<thead>
       <tr>
+     	 <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
         </tr>
         </thead>
 		<tbody>
 			 <tr th:each="row: ${allPersons}">
+			 	<td th:text="${row.id}">FirstName</td>
                 <td th:text="${row.firstName}">FirstName</td>
                 <td th:text="${row.lastName}">Last Name</td>
                 </tr>
@@ -50,7 +53,15 @@
 	<form action="#" th:action="@{/insertPerson}" th:object="${person}" method="post">
     	<p>Nome: <input type="text" th:field="*{firstName}" /></p>
         <p>Sobrenome: <input type="text" th:field="*{lastName}" /></p>
-        <p><button id='btn-delete' >Insert</button></p>
+        <p><button id='btn-insert' >Insert</button></p>
+    </form>
+    </div>
+    <div  id="dialog-update" style="display:none" title="Insert a Person" >
+	<form action="#" th:action="@{/updatePerson}" th:object="${person}" method="post">
+    	<p>Id: <input type="text" th:field="*{id}" /></p>
+    	<p>Nome: <input type="text" th:field="*{firstName}" /></p>
+        <p>Sobrenome: <input type="text" th:field="*{lastName}" /></p>
+        <p><button id='btn-update' >Update</button></p>
     </form>
     </div>
     </div>
@@ -64,11 +75,14 @@
 					  $( "#result" ).html( data.split(',') );
 					});
 			});
-			$('#btn-delete').on('click',function(){
+			$('#btn-delete-dialog').on('click',function(){
 				$('#dialog-delete').dialog();
 			});
-			$('#btn-insert').on('click',function(){
+			$('#btn-insert-dialog').on('click',function(){
 				$('#dialog-insert').dialog();
+			});
+			$('#btn-update-dialog').on('click',function(){
+				$('#dialog-update').dialog();
 			});
 			
 		});
