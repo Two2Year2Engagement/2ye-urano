@@ -1,7 +1,5 @@
 package hello;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -46,13 +41,7 @@ public class CRUDController {
        	this.repository.save(person);
    		return "redirect:/crud";
    	}
-    @RequestMapping(value = "/find")
-	public String teste(Model model) {	
-    	Iterable<Person> allPersonsIterable = this.repository.findAll();
-    	ArrayList<Person> allPersons = Lists.newArrayList(allPersonsIterable);
-    	model.addAttribute("allPersons", allPersons);
-		return allPersons.toString();
-	}
+   
     
     @ModelAttribute("allPersons")
     public List<Person> populateSeedStarters() {
