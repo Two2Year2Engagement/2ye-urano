@@ -11,7 +11,7 @@ The project is using the following tech:
 
 The base project was:
 
-pocs/2ye-urano-spring-crud/README.md
+[GitHub Repo from Greg Turnquist](https://github.com/spring-guides/gs-serving-web-content )(08/2015)
 
 
 
