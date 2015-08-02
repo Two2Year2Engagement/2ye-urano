@@ -33,8 +33,6 @@ public class CRUDController {
 
     @RequestMapping(value="/updatePerson")
    	public String updatePerson(@ModelAttribute("form-delete") Person person){
-       	//Iterable<Person> allPersons = this.repository.findAll();
-       	//Iterable<Person> filterPersons = findTheRightPerson(person, allPersons);
        	this.repository.save(person);
    		return "redirect:/crud";
    	}
