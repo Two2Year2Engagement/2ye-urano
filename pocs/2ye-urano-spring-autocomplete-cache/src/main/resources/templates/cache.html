@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container" style="width: 800px">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h3>AutoComplete Cache Example</h3>
+    </div>
+  </div>
+</nav>
+		
+	<p>Nome: <input  id="nome-input" type="text" placeholder="Digite.." /></p>
+	<button  id="btn-find" class="  btn btn-lg btn-primary" >Find Person</button>
+	<div  style="margin-top: 10px">
+		<p id="text"></p>
+	</div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+			$('#btn-find').on('click',function(){
+				$.getJSON( "http://localhost:8080/find?name="+$( "#nome-input" ).val(), function( data ) {
+					  $( "#text" ).html( data );
+					});
+			});
+			
+			
+			
+			$( "#nome-input" ).autocomplete({	
+					minLength:  2,
+	               source: function(request, response){
+	            	   $.getJSON( "http://localhost:8080/autocompletePerson",  request ,function( data ) {
+	 					     response(data);
+	 					});
+	               }
+	            });
+			
+		});
+	</script>
+</body>
+</html>
