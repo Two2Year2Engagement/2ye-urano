@@ -14,9 +14,9 @@ This project uses the following tech:
 
 -Hazelcast for cache
 
--H2
+-slf4j for Log
 
--Hibernate
+
 
 
 Projects base:
