@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<title>Spring Security Example</title>
+</head>
+<body>
+	<div class="container" style="width: 800px">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<h3>Login Example</h3>
+				</div>
+			</div>
+		</nav>
+		<div th:if="${param.error}">Invalid username and password.</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		<div class="form-container" style="padding-top: 20px;width: 600px;margin: auto">
+			<form th:action="@{/login}" method="post">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">@</span> <input
+						type="text" class="form-control" placeholder="Username"
+						aria-describedby="basic-addon1" name="username" /> <span
+						class="input-group-addon" id="basic-addon2">@example.com</span>
+				</div>
+				<div class="input-group" style="padding-top: 5px">
+					<span class="input-group-addon" id="basic-addon1">X</span> <input
+						type="password" class="form-control" placeholder="Password"
+						aria-describedby="basic-addon1" name="password" />
+				</div>
+				<div  style="padding-top: 10px">
+					<input type="submit" value="Sign In" class="btn btn-lg btn-success" />			
+					<input id="btn-newUser"  value="New User" class=" btn btn-lg btn-primary" />
+				</div>
+			</form>
+		</div>
+		<div id="dialog-newUser" style="display: none; width: 200px" title="Create a New User">
+		<form id="form-createUser" th:action="@{/createUser}" th:object="${user}" method="post">
+			<div class="input-group" >
+					<span class="input-group-addon" id="basic-addon1">@</span> <input
+						id="create-user" type="text" class="form-control" placeholder="Username"
+						aria-describedby="basic-addon1" name="username" /> <span
+						class="input-group-addon" id="basic-addon2">@example.com</span>
+				</div>
+				<div class="input-group" style="padding-top: 5px">
+					<span class="input-group-addon" id="basic-addon1">X</span> <input
+						id="create-pass" type="password" class="form-control" placeholder="Password"
+						aria-describedby="basic-addon1" name="password" />
+				</div>
+				<div  style="padding-top: 10px">
+					<input  type="submit" value="Create User"  class="btn btn-lg btn-success" />
+				</div>
+				
+		</form>
+		</div>
+	</div>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#btn-newUser').on('click',function(){
+				$('#dialog-newUser').dialog();
+			});
+			$('#btn-createUser').on('click',function(){
+				$.post( "http://localhost:8080/createUser?username="+$('#create-user').val()+"?password="+$('#create-pass').val());
+			});
+		});
+	</script>
+</body>
+</html>
