@@ -1,5 +1,5 @@
 
-#Log Aspect POC with SPRING AOP
+#Log Aspect POC with Spring AOP
 
 This is a console project for study of Aspect Oriented programming
 
@@ -8,7 +8,6 @@ The project is using the following tech:
 -Spring AOP
 
 -Spring boot
-
 
 
 The base project was:
