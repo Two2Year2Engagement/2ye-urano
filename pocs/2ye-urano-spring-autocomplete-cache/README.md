@@ -1,5 +1,7 @@
 #AutoComplete with Cache POC SPRING BOOT
 
+The url start point for this project is localhost:8080/cache
+
 The project is using the following tech:
 
 -Flyway
