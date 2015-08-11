@@ -2,7 +2,7 @@
 
 It is a POC for login with Spring Security project.
 
-The url startpoint is: localhost:8080/login or localhost:8080/home
+The url start point is: localhost:8080/login or localhost:8080/home
 
 In this project I'm using this tech:
 
