@@ -14,6 +14,11 @@ This project uses the following tech:
 
 -Hazelcast for cache
 
+-H2
+
+-Hibernate
+
+
 Projects base:
 [All your base are belong to us]( http://ilkinbalkanay.blogspot.com.br/2008/01/readwritelock-example-in-java.html ) (08/2015)
 
