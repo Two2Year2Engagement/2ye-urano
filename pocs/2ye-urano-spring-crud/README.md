@@ -1,5 +1,7 @@
 #CRUD POC SPRING BOOT
 
+The url startpoint for this project is localhost:8080/crud
+
 The project is using the following tech:
 
 -Flyway
