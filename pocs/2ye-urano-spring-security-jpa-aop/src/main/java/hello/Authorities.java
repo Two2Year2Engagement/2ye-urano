@@ -1,10 +1,8 @@
 package hello;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Authorities {
@@ -21,6 +19,15 @@ public class Authorities {
 		return username;
 	}
 
+	public Authorities() {
+	}
+
+	public Authorities(String username, String authority) {
+		this.setAuthority(authority);
+		this.setUsername(username);
+	}
+
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
